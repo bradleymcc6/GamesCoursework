@@ -113,10 +113,11 @@ public class EnemyAI : MonoBehaviour
 
         if (Physics.Raycast(enemy.transform.position, enemy.transform.forward, out hit, shootingRange))
         {
+             Shoot playerShoot = hit.transform.GetComponent<Shoot>();
             if (Accuracy() == 1)
             {
                 
-                Shoot playerShoot = hit.transform.GetComponent<Shoot>();
+                
                 playerShoot.TakeDamage(1);
             }
         }
