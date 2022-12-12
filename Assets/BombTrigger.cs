@@ -24,17 +24,6 @@ public class BombTrigger : MonoBehaviour
         {
             holdToDefuse.SetActive(true);
             isTriggered = true;
-            
-
-           /* EnemyAI enemyAI = FindObjectOfType<EnemyAI>();
-            finalEnemies = enemyAI.finalEnemies;
-            Debug.Log("final enemies" + finalEnemies.Length);
-            for (int x =0; x<3; x++)
-            {
-                enemyAI.finalEnemies[x].SetActive(true);
-            }
-           */
-            Debug.Log("Trigger");
 
             //Ensures final enemy only spawns once
             if (finalEnemy != true)
@@ -53,10 +42,11 @@ public class BombTrigger : MonoBehaviour
         {
             holdToDefuse.SetActive(false);
             defuseProgress.SetActive(false);
-            Debug.Log("Trigger");
+           
             progress = 0;
             isTriggered = false;
 
+            //Stop progress if player steps away from bomb
             if (coroutineRunning)
             {
                 StopCoroutine(IncreaseProgress());
@@ -83,9 +73,10 @@ public class BombTrigger : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 holdToDefuse.SetActive(false);
-                Debug.Log("Defusing");
+               
                 defuseProgress.SetActive(true);
 
+                //Ensures we do not have multiple coroutines running simultaneously
                 if (!coroutineRunning)
                 {
 

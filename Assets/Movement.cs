@@ -43,15 +43,12 @@ public class Movement : MonoBehaviour
         hInput = Input.GetAxisRaw("Horizontal");
         vInput = Input.GetAxisRaw("Vertical");
 
-        //movement = new UnityEngine.Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rigidBody.AddForce(UnityEngine.Vector2.up * jumpHeight, ForceMode.Impulse);
         }
-        //rotation.x += Input.GetAxis("Mouse X");
-        //rotation.y += Input.GetAxis("Mouse Y");
-        //transform.localRotation = UnityEngine.Quaternion.Euler(0, (rotation.x)*2, 0);
-
+        
         //If statement prevents calling to a rotation of 0,0
         if (movement != UnityEngine.Vector3.zero)
         {
@@ -59,16 +56,6 @@ public class Movement : MonoBehaviour
             
         }
 
-        /*if (rigidBody.velocity.magnitude > 0)
-        {
-            Debug.Log("HELLO");
-            animator.SetFloat("CharacterSpeed", 20);
-        }
-        else
-        {
-            animator.SetFloat("CharacterSpeed", 0);
-        }
-        */
         if (Input.GetKey(KeyCode.W))
         {
             animator.SetFloat("CharacterSpeed", 1.0f);
@@ -88,7 +75,6 @@ void FixedUpdate()
 
         direction = orientation.forward * vInput + orientation.right * hInput;
         rigidBody.AddForce(direction.normalized * moveSpeed * 10.0f, ForceMode.Force);
-        //rigidBody.MovePosition(transform.position + movement * Time.deltaTime * 20);
         rigidBody.AddForce(Physics.gravity * (gravityScale - 1) * rigidBody.mass);
         rigidBody.angularVelocity = UnityEngine.Vector3.zero;
     }

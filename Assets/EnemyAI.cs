@@ -28,8 +28,6 @@ public class EnemyAI : MonoBehaviour
 
     private Animator animator;
 
-    public GameObject[] finalEnemies;
-
     public Rigidbody rigidBody;
 
     private void Awake()
@@ -38,27 +36,16 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        finalEnemies = GameObject.FindGameObjectsWithTag("FinalEnemy");
-        Debug.Log("FINAL ENEMIES" + finalEnemies.Length);
-        
-for (int x = 0; x < finalEnemies.Length; x++)
-        {
-            finalEnemies[x].SetActive(false);
-        }
-
-        //rigidBody = GetComponent<Rigidbody>();
-        //rigidBody.freezeRotation = true;
     }
 
     private void Update()
     {
         
-
-        //rigidBody.freezeRotation = true;
         //Sets a variable as true depending on if the player is in sight or close enough to attack
         tylerInSight = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         tylerInAttack = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
+        //Managing enemy state depending on proximity of player
         if (!tylerInSight && !tylerInAttack)
         {
             Patrol();
@@ -70,13 +57,6 @@ for (int x = 0; x < finalEnemies.Length; x++)
         if (tylerInSight && tylerInAttack)
         {
             Shoot();
-        }
-
-
-        //Recalculates the AI's path if it ends up blocked, allowing dynamic changes
-        if (rigidBody.velocity == Vector3.zero)
-        {
-            Patrol();
         }
     }
 
@@ -158,28 +138,27 @@ for (int x = 0; x < finalEnemies.Length; x++)
         Destroy(gameObject);
     }
 
+
+    //Accuracy of enemies decreased if player has selected easy mode on the main menu
     int Accuracy()
     {
         if (PlayerPrefs.GetInt("Easy") == 1)
         {
             int randomRange = Random.Range(0, 200);
-            Debug.Log(randomRange);
             return randomRange;
         }
         else
         {
             int randomRange = Random.Range(0, 100);
-            Debug.Log(randomRange);
             return randomRange;
         }
         }
 
 
 
-    //Recalculate AI route if collides, leading to dynamic changing
+    //Recalculate AI route if collides, prevents AI attempting to walk through a wall
     void OnCollisionStay(Collision collision)
-    {
-        Debug.Log("Enemy collision");
+    { 
         CreateDestination();
         Patrol();
 

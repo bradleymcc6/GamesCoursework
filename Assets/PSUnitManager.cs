@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//I have adapted this library from https://github.com/Floppi003/PSFlockingLibrary/releases/tag/1.0
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

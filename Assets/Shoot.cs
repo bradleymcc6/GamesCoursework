@@ -29,10 +29,6 @@ public class Shoot : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         currentHealth = 80;
-        //colour = Red.GetComponent<Image>().color.a;
-
-        //HealthBar health = player.transform.GetComponent<HealthBar>();
-        //Debug.Log(health);
         laserLine = GetComponent<LineRenderer>();
     }
 
@@ -67,7 +63,6 @@ public class Shoot : MonoBehaviour
         {
             laserLine.enabled = true;
             laserLine.SetPosition(0, gunEnd.position);
-            Debug.Log(hit.transform.name);
             EnemyAI enemyAIHit = hit.transform.GetComponent<EnemyAI>();
             laserLine.SetPosition(1, hit.point);
             animator.SetBool("CharacterAim", true);
@@ -97,7 +92,7 @@ public class Shoot : MonoBehaviour
         Red.GetComponent<Image>().color = colour;
         currentHealth -= 1;
         healthBar.SetHealth(currentHealth);
-        Debug.Log(healthBar.slider.value);
+       
 
 
 
