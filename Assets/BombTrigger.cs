@@ -28,7 +28,7 @@ public class BombTrigger : MonoBehaviour
             //Ensures final enemy only spawns once
             if (finalEnemy != true)
             {
-                Instantiate(enemy, new Vector3(165f, 20f, 200f),
+                Instantiate(enemy, new Vector3(170f, 20f, 200f),
                              Quaternion.identity);
                 finalEnemy = true;
             }

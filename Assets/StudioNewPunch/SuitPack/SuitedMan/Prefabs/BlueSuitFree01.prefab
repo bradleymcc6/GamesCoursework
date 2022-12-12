@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 462444}
   - component: {fileID: 13782390}
+  - component: {fileID: 4331896310161960722}
   m_Layer: 0
   m_Name: HeadF
   m_TagString: Untagged
@@ -122,6 +123,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.3545574, y: 0.03216575, z: -0.0004267916}
     m_Extent: {x: 0.18598987, y: 0.16294849, z: 0.09038499}
   m_DirtyAABB: 0
+--- !u!136 &4331896310161960722
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103594}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.16896673
+  m_Height: 0.38247854
+  m_Direction: 1
+  m_Center: {x: 0.0004267917, y: 1.6146722, z: 0.017615817}
 --- !u!1 &104812
 GameObject:
   m_ObjectHideFlags: 0

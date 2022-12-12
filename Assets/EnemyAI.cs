@@ -119,7 +119,11 @@ public class EnemyAI : MonoBehaviour
 
                 if (Accuracy() == 1)
             {
-                
+                    //Player takes more damage if AI shoots in head
+                    if (hit.collider.tag == "Head")
+                    {
+                        playerShoot.TakeDamage(5);
+                    }
                 
                 playerShoot.TakeDamage(1);
             }
