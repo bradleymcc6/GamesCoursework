@@ -24,14 +24,13 @@ public class Timer : MonoBehaviour
     {
         if (timeRemaining)
         {
-            if(amountOfTimeRemaining > 0)
+            if(amountOfTimeRemaining >= 0)
             {
                 amountOfTimeRemaining -= Time.deltaTime;
                 TimerUpdate(amountOfTimeRemaining);
             }
             else
             {
-                Debug.Log("Out of time!");
                 amountOfTimeRemaining = 0f;
                 timeRemaining = false;
                 gameOverObject.SetActive(true);
