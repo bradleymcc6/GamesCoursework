@@ -11,8 +11,7 @@ using System.Linq;
 public class Minmax : MonoBehaviour
 {
     bool playerPlayed;
-    bool aIPlayed;
-
+    
     public GameObject yourTurn;
     public GameObject[] cells;
     public GameObject currentCell;
@@ -28,10 +27,7 @@ public class Minmax : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bool playerPlayed = false;
-        bool aIplayed = false;
         cells = GameObject.FindGameObjectsWithTag("Cell");
-        int score = 0;
         greenScore = 0;
      
     }
@@ -46,7 +42,7 @@ public class Minmax : MonoBehaviour
             {
                 return;
             }
-            aIPlayed = false;
+            
             playerPlayed = true;
 
             cells[x].GetComponent<Image>().color = Color.green;
@@ -159,43 +155,44 @@ public class Minmax : MonoBehaviour
             for (int x = 0; x < aICells.Count; x++)
             {
                 if (!aICellsTried.Contains(x))
-                    {
-                    
+                {
+
                     aICellsTried.Add(x);
-                 
+
                     aICells[x].GetComponent<Image>().color = Color.red;
-   
+
                     bestChoice = MathF.Min(choice, bestChoice);
                     aICells[x].GetComponent<Image>().color = Color.white;
-                    
-              
-                if (bestChoice < choice)
-                {
-                    bestChoice = choice;
-                         
-                 }
+
+
+                    if (bestChoice < choice)
+                    {
+                        bestChoice = choice;
+
+                    }
                     aICells[(int)choice].GetComponent<Image>().color = Color.red;
                 }
-                
+
             }
             return (int)bestChoice;
         }
-        else {
-        
-         
-            float bestChoice = Mathf.Infinity*-1;
+        else
+        {
+
+
+            float bestChoice = Mathf.Infinity * -1;
             for (int x = 0; x < aICells.Count; x++)
             {
                 float choice = 0f;
                 if (playedCells.Contains(x))
                 {
-                    
+
                     playedCells.Add(x);
 
-                  
+
                     bestChoice = MathF.Min(choice, bestChoice);
-          
-                  
+
+
 
                     if (bestChoice < choice)
                     {
@@ -205,29 +202,10 @@ public class Minmax : MonoBehaviour
                     }
                     aICells[(int)choice].GetComponent<Image>().color = Color.red;
                 }
-                
+
             }
             return (int)bestChoice;
         }
-        return (int)Choice.Empty;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }

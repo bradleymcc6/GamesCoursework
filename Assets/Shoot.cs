@@ -7,7 +7,6 @@ public class Shoot : MonoBehaviour
 {
 
     public HealthBar healthBar;
-    int amount10 = 10;
     public GameObject Red;
     void resetAnimator()
     {
