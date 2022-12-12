@@ -8,11 +8,7 @@ public class Shoot : MonoBehaviour
 
     public HealthBar healthBar;
     public GameObject Red;
-    void resetAnimator()
-    {
-        animator.SetBool("CharacterAim", false);
-        laserLine.enabled = false;
-    }
+    
     public Transform player;
     public float range = 100f;
     private Animator animator;
@@ -68,6 +64,7 @@ public class Shoot : MonoBehaviour
 
             if (enemyAIHit != null)
             {
+                //Enemies take more damage on easy mode
                 if (PlayerPrefs.GetInt("Easy") == 1)
                 {
                     enemyAIHit.TakeDamage(20);
@@ -79,11 +76,15 @@ public class Shoot : MonoBehaviour
                 
             }
            
-            Invoke("resetAnimator", 2);
+            Invoke("resetAnimator", 1);
         }
     }
 
-
+void resetAnimator()
+    {
+        animator.SetBool("CharacterAim", false);
+        laserLine.enabled = false;
+    }
     public void TakeDamage(int amount)
     {
         var colour = Red.GetComponent<Image>().color;
